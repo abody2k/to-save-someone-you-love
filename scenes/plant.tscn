@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://bmeye5iakbkmu"]
+
+[ext_resource type="Script" uid="uid://bru023ugygyi7" path="res://scripts/plant.gd" id="1_fi0kw"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_o1sid"]
+
+[node name="plant" type="Node3D" unique_id=1169992525]
+script = ExtResource("1_fi0kw")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=2026994368]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CylinderMesh_o1sid")
+
+[node name="aim" type="Node3D" parent="." unique_id=1522413017]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 1.9885527, 0)
+
+[node name="Timer" type="Timer" parent="." unique_id=831522186]
+wait_time = 4.0
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
