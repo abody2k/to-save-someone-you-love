@@ -18,6 +18,15 @@ func _physics_process(delta):
 	if not can_move:
 		return
 		
+
+	move(delta)
+	rotate_(delta)
+	attack(delta)
+	move_and_slide()
+
+
+func move(delta):
+	
 		
 	if Input.is_action_pressed("swim"):
 		print("SWIMMING")
@@ -28,6 +37,8 @@ func _physics_process(delta):
 		slow_down_factor = clampf(slow_down_factor,0.0,1.0)
 		velocity = lerp(velocity, Vector3.DOWN * speed,slow_down_factor)
 		
+func rotate_(delta):
+			
 	
 	#var quat = Quaternion.from_euler(Vector3($shape.global_rotation.x,$shape.global_rotation.y,$shape.global_rotation.z))
 	
@@ -38,10 +49,36 @@ func _physics_process(delta):
 	#$shape.quaternion = $shape.quaternion * quat_up_down
 	#$shape.rotate_z(Input.get_axis("left","right") * delta)
 	#$shape.rotate_x(Input.get_axis("forward","backward") * delta)
-	print(velocity)
-	move_and_slide()
+
+var bubble_factor : float = 0.0:
+	set(value):
+		
+		bubble_factor = clampf(value,0,1)
+			
+	
+	
+const BUBBLE = preload("res://scenes/bubble.tscn")
 
 
+func attack(delta):
+	
+	
+	if Input.is_action_just_pressed("fire_bubbles"):
+		bubble_factor = 0
+	elif Input.is_action_pressed("fire_bubbles"):
+		bubble_factor+=(delta * 2)
+	elif Input.is_action_just_released("fire_bubbles"):
+		var bubble = BUBBLE.instantiate()
+		print(bubble_factor)
+
+		bubble.small_bubble = bubble_factor < 1
+		
+		get_tree().current_scene.add_child(bubble)
+		bubble.global_position = $aim.global_position
+		bubble.global_basis = bubble.global_basis.looking_at($aim.global_basis.z)
+		
+		
+		
 func _input(event):
 	
 	if event is InputEventMouseMotion:
