@@ -90,3 +90,6 @@ func _input(event):
 		#$arm.quaternion = Quaternion(Vector3.UP,get_physics_process_delta_time() * clamp(x.screen_relative.y,-1,1) * 10) * Quaternion(Vector3.FORWARD,get_physics_process_delta_time() * clamp(x.screen_relative.x,-1,1) * 10) * $arm.quaternion
 		$arm.rotate_y(get_physics_process_delta_time() * clamp(x.screen_relative.x,-1,1) * 10)
 		
+		
+func take_hit():
+	get_tree().reload_current_scene()
