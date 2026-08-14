@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://cu2rmwjacgxh4" path="res://scenes/sub_viewport.gd" id="1_fiuhb"]
 [ext_resource type="PackedScene" uid="uid://c2kpy36qawbid" path="res://scenes/door.tscn" id="2_a1ohp"]
 [ext_resource type="PackedScene" uid="uid://bwsd67fw3ha3i" path="res://scenes/gate.tscn" id="3_ogne1"]
+[ext_resource type="PackedScene" uid="uid://bmeye5iakbkmu" path="res://scenes/plant.tscn" id="5_ogne1"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_f1edo"]
 size = Vector3(17.995117, 1, 25.353027)
@@ -83,3 +84,9 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 texture = SubResource("ViewportTexture_f1edo")
+
+[node name="plant" parent="." unique_id=1169992525 instance=ExtResource("5_ogne1")]
+transform = Transform3D(1, 0, 0, 0, -0.4564705, 0.88973856, 0, -0.88973856, -0.4564705, 5.5293164, 1.7859347, 4.5427437)
+
+[node name="plant2" parent="." unique_id=2121478756 instance=ExtResource("5_ogne1")]
+transform = Transform3D(0.68024474, -0.6344344, 0.367097, -0.33458602, 0.17684004, 0.925624, -0.6521652, -0.75247645, -0.09197843, 5.5293164, 3.064584, 3.886747)
