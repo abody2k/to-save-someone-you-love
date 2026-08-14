@@ -6,11 +6,23 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5hnfc"]
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_f1edo"]
+
 [node name="diver" type="CharacterBody3D" unique_id=1684793824]
 script = ExtResource("1_cgobh")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=861550610]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
 mesh = SubResource("CapsuleMesh_o1sid")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1157282500]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_5hnfc")
+
+[node name="SpringArm3D" type="SpringArm3D" parent="." unique_id=1097224483]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7682986, 0)
+shape = SubResource("SphereShape3D_f1edo")
+spring_length = 3.244
+
+[node name="Camera3D" type="Camera3D" parent="SpringArm3D" unique_id=465463412]
+transform = Transform3D(1, 0, 0, 0, 0.98259425, 0.18576476, 0, -0.18576476, 0.98259425, 0, 0, 3.2442012)
