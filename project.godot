@@ -25,6 +25,8 @@ window/stretch/aspect="expand"
 wall=""
 fish=""
 player=""
+gate=""
+bubble=""
 
 [input]
 

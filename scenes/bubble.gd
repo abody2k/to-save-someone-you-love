@@ -3,19 +3,24 @@ extends Area3D
 @export var bubble_speed = 10.0
 
 var small_bubble= true
+var original_pos : Vector3:
+	set(value):
+		original_pos = value
+		global_position = original_pos
+
 
 func _ready():
+	global_position = original_pos
+	
+	print(original_pos)
 	
 	if not small_bubble:
-		print("big bubble")
 		get_tree().create_tween().tween_property(self,"scale",Vector3.ONE,0.5)
 	else:
-		print("SMALL BUBBLE")
 		$shape.scale = Vector3.ONE * 0.16
-		print(global_basis.get_scale())
 
 func _physics_process(delta):
-	
+	pass
 	global_position += (-global_basis.z) * bubble_speed * delta
 
 

@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://c2kpy36qawbid"]
+
+[ext_resource type="Script" uid="uid://blgv4tigr6tvg" path="res://scripts/door.gd" id="1_hpvv5"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_f1edo"]
+size = Vector3(2.0263672, 2.9627686, 0.37060547)
+
+[node name="door" type="Node3D" unique_id=1666436317]
+script = ExtResource("1_hpvv5")
+
+[node name="door" type="Node3D" parent="." unique_id=482089603]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="door" unique_id=1678779441]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0156002, 1.4914129, 0.005022526)
+mesh = SubResource("BoxMesh_f1edo")
