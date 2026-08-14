@@ -29,7 +29,6 @@ func move(delta):
 	
 		
 	if Input.is_action_pressed("swim"):
-		print("SWIMMING")
 		velocity =(  - $shape.global_basis.y) * speed
 		slow_down_factor = 0.0
 	else:
@@ -69,13 +68,14 @@ func attack(delta):
 		bubble_factor+=(delta * 2)
 	elif Input.is_action_just_released("fire_bubbles"):
 		var bubble = BUBBLE.instantiate()
-		print(bubble_factor)
+		print($shape/MeshInstance3D2/aim.global_position)
 
 		bubble.small_bubble = bubble_factor < 1
 		
-		get_tree().current_scene.add_child(bubble)
-		bubble.global_position = $aim.global_position
-		bubble.global_basis = bubble.global_basis.looking_at($aim.global_basis.z)
+		
+		add_child(bubble)
+		bubble.original_pos = $shape/MeshInstance3D2/aim.global_position
+		bubble.global_basis = bubble.global_basis.looking_at($shape/MeshInstance3D2/aim.global_basis.z)
 		
 		
 		

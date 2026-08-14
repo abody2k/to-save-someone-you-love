@@ -6,7 +6,7 @@
 
 [sub_resource type="SphereMesh" id="SphereMesh_f1edo"]
 
-[node name="bubble" type="Area3D" unique_id=1160489914]
+[node name="bubble" type="Area3D" unique_id=1160489914 groups=["bubble"]]
 collision_mask = 3
 script = ExtResource("1_2vdav")
 bubble_speed = 40.0
