@@ -4,6 +4,15 @@ extends CharacterBody3D
 var can_move = true
 var slow_down_factor : float = 0.0
 
+var oxygen : float = 100.0:
+	set(value):
+		oxygen = value
+		oxygen = clamp(oxygen,0.0,100.0)
+		
+		#TODO shader stuff related to progress
+		
+		
+
 
 func _ready():
 	pass
@@ -14,6 +23,8 @@ func _ready():
 	
 
 func _physics_process(delta):
+	oxygen -=delta
+	
 	
 	if not can_move:
 		return
