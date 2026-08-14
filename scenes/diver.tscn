@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://567ywpakxyg5"]
+
+[ext_resource type="Script" uid="uid://cvx8n0mky1ort" path="res://scripts/diver.gd" id="1_cgobh"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_o1sid"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5hnfc"]
+
+[node name="diver" type="CharacterBody3D" unique_id=1684793824]
+script = ExtResource("1_cgobh")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=861550610]
+mesh = SubResource("CapsuleMesh_o1sid")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1157282500]
+shape = SubResource("CapsuleShape3D_5hnfc")
