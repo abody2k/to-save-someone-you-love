@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://bdgsigy4fawcf"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wftpd"]
+size = Vector3(9.033203, 1, 14.560547)
+
+[sub_resource type="BoxMesh" id="BoxMesh_f1edo"]
+size = Vector3(9.033203, 1, 14.560547)
+
+[node name="wagon" type="CharacterBody3D" unique_id=1002093394]
+
+[node name="shape" type="CollisionShape3D" parent="." unique_id=1828184278]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3466797, 0, -6.7802734)
+shape = SubResource("BoxShape3D_wftpd")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="shape" unique_id=1104595542]
+mesh = SubResource("BoxMesh_f1edo")
