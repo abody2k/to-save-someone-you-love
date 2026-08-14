@@ -1,5 +1,8 @@
 [gd_scene format=3 uid="uid://bdgsigy4fawcf"]
 
+[ext_resource type="Script" uid="uid://sw5uclltcsre" path="res://scripts/wagon.gd" id="1_asyws"]
+[ext_resource type="PackedScene" uid="uid://bwsd67fw3ha3i" path="res://scenes/gate.tscn" id="2_e0vi3"]
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_wftpd"]
 size = Vector3(9.033203, 1, 14.560547)
 
@@ -7,10 +10,22 @@ size = Vector3(9.033203, 1, 14.560547)
 size = Vector3(9.033203, 1, 14.560547)
 
 [node name="wagon" type="CharacterBody3D" unique_id=1002093394]
+script = ExtResource("1_asyws")
 
 [node name="shape" type="CollisionShape3D" parent="." unique_id=1828184278]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3466797, 0, -6.7802734)
 shape = SubResource("BoxShape3D_wftpd")
 
+[node name="gate" parent="shape" unique_id=947940462 instance=ExtResource("2_e0vi3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2432535, -0.5782447, 6.6780972)
+required_bubbles = 1
+
+[node name="gate2" parent="shape" unique_id=786933667 instance=ExtResource("2_e0vi3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.4583163, -0.5733781, 6.724017)
+required_bubbles = 1
+
 [node name="MeshInstance3D" type="MeshInstance3D" parent="shape" unique_id=1104595542]
 mesh = SubResource("BoxMesh_f1edo")
+
+[connection signal="gate_opened" from="shape/gate" to="." method="_on_gate_gate_opened"]
+[connection signal="gate_opened" from="shape/gate2" to="." method="_on_gate_2_gate_opened"]
