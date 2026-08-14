@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://kfn1tmbwrmuo"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_f1edo"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_yctex"]
+
+[node name="bubble" type="Area3D" unique_id=1160489914]
+collision_mask = 2
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=835883638]
+mesh = SubResource("SphereMesh_f1edo")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1157823938]
+shape = SubResource("SphereShape3D_yctex")
