@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://bwsd67fw3ha3i"]
+
+[ext_resource type="Script" uid="uid://c52n5eewgr6k7" path="res://scripts/gate.gd" id="1_xfvdi"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_f1edo"]
+size = Vector3(0.20855713, 2.98938, 0.7392578)
+
+[sub_resource type="BoxMesh" id="BoxMesh_o1sid"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ghoj6"]
+
+[node name="gate" type="Area3D" unique_id=947940462]
+script = ExtResource("1_xfvdi")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1842107401]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4913183, 0)
+mesh = SubResource("BoxMesh_f1edo")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=299917424]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4368124, 0)
+mesh = SubResource("BoxMesh_o1sid")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=722194345]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4368124, 0)
+shape = SubResource("BoxShape3D_ghoj6")
