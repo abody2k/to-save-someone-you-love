@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://1l0dk1m57j2k"]
+
+[ext_resource type="Script" uid="uid://cb75y1lwdqwe7" path="res://scripts/smart_fish.gd" id="1_grkh1"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_wp7ol"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_grkh1"]
+
+[node name="smart_fish" type="CharacterBody3D" unique_id=1839376785 groups=["fish"]]
+script = ExtResource("1_grkh1")
+
+[node name="shape" type="CollisionShape3D" parent="." unique_id=638452554]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_wp7ol")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="shape" unique_id=485004214]
+mesh = SubResource("CapsuleMesh_grkh1")
