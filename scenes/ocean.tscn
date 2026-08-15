@@ -7,6 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://bmeye5iakbkmu" path="res://scenes/plant.tscn" id="5_ogne1"]
 [ext_resource type="PackedScene" uid="uid://bdgsigy4fawcf" path="res://scenes/wagon.tscn" id="6_vjho5"]
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_f1edo"]
+
 [sub_resource type="BoxMesh" id="BoxMesh_f1edo"]
 size = Vector3(17.995117, 1, 25.353027)
 
@@ -24,6 +26,14 @@ sky_material = SubResource("ProceduralSkyMaterial_7i2eo")
 background_mode = 2
 sky = SubResource("Sky_fiuhb")
 
+[sub_resource type="Animation" id="Animation_vjho5"]
+resource_name = "start_dialog"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4imn2"]
+_data = {
+&"start_dialog": SubResource("Animation_vjho5")
+}
+
 [sub_resource type="ViewportTexture" id="ViewportTexture_f1edo"]
 viewport_path = NodePath("SubViewport")
 
@@ -32,6 +42,21 @@ script = ExtResource("1_fiuhb")
 
 [node name="SubViewport" type="SubViewport" parent="." unique_id=228781724]
 handle_input_locally = false
+
+[node name="plant" parent="SubViewport" unique_id=1169992525 instance=ExtResource("5_ogne1")]
+transform = Transform3D(1, 0, 0, 0, -0.4564705, 0.88973856, 0, -0.88973856, -0.4564705, 5.5293164, 1.7859347, 4.5427437)
+
+[node name="plant2" parent="SubViewport" unique_id=2121478756 instance=ExtResource("5_ogne1")]
+transform = Transform3D(0.68024474, -0.6344344, 0.367097, -0.33458602, 0.17684004, 0.925624, -0.6521652, -0.75247645, -0.09197843, 5.5293164, 3.064584, 3.886747)
+
+[node name="wagon" parent="SubViewport" unique_id=1002093394 instance=ExtResource("6_vjho5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1475067, 0.2882446, -8.069773)
+
+[node name="final" type="Area3D" parent="SubViewport" unique_id=2045414916]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.380383, 0.2332468, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewport/final" unique_id=35546992]
+shape = SubResource("SphereShape3D_f1edo")
 
 [node name="door" parent="SubViewport" unique_id=1666436317 node_paths=PackedStringArray("opening_gate", "closing_gate") instance=ExtResource("2_a1ohp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.2558007, -1.2472587, 0.853946)
@@ -60,7 +85,10 @@ shadow_enabled = true
 [node name="WorldEnvironment" type="WorldEnvironment" parent="SubViewport" unique_id=1204645723]
 environment = SubResource("Environment_mn261")
 
-[node name="diver" parent="SubViewport" unique_id=1684793824 instance=ExtResource("1_7i2eo")]
+[node name="diver" parent="SubViewport" unique_id=1684793824 groups=["player"] instance=ExtResource("1_7i2eo")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SubViewport" unique_id=822964063]
+libraries/ = SubResource("AnimationLibrary_4imn2")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1789672151]
 
@@ -86,11 +114,13 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 texture = SubResource("ViewportTexture_f1edo")
 
-[node name="plant" parent="." unique_id=1169992525 instance=ExtResource("5_ogne1")]
-transform = Transform3D(1, 0, 0, 0, -0.4564705, 0.88973856, 0, -0.88973856, -0.4564705, 5.5293164, 1.7859347, 4.5427437)
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Control" unique_id=438335192]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.123
+offset_bottom = 0.29599762
+grow_horizontal = 2
+theme_override_font_sizes/normal_font_size = 25
 
-[node name="plant2" parent="." unique_id=2121478756 instance=ExtResource("5_ogne1")]
-transform = Transform3D(0.68024474, -0.6344344, 0.367097, -0.33458602, 0.17684004, 0.925624, -0.6521652, -0.75247645, -0.09197843, 5.5293164, 3.064584, 3.886747)
-
-[node name="wagon" parent="." unique_id=1002093394 instance=ExtResource("6_vjho5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1475067, 0.2882446, -8.069773)
+[connection signal="body_entered" from="SubViewport/final" to="." method="_on_final_body_entered"]
