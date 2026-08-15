@@ -33,7 +33,10 @@ var current_dialog = 0
 
 
 func _ready():
-	pass
+	if Singleton.pushed_crystals:
+		dialogs = dialogs_after_crystals
+	
+	run_dialogs_automatically()
 
 
 

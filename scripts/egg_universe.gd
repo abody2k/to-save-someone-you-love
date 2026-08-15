@@ -43,7 +43,10 @@ var current_dialog = 0
 
 
 
-
+func _ready():
+	run_dialogs_automatically()
+	
+	
 func run_dialogs_automatically():
 	var dialog = dialogs[current_dialog][0]
 	if dialogs[current_dialog][1]:
