@@ -1,12 +1,12 @@
 extends Node3D
 
 var dialogs = [
-	["hola",null,1.0],
-	["yes",null,1.0],
-	["no",null,1.0],
-	["ohh",null,1.0],
-	["ffff",null,1.0],
-	["",null,1.0],
+	["Her : love what are you doing?",null,1.0],
+	["You : But you were in the subm.. who are you?",null,1.0],
+	["Her : I'm your wife, don't you remember?",null,1.0],
+	["You : You are not real",null,1.0],
+	["Her : It seems like they lied to you, this is the real world",null,1.0],
+	["She can't be real, this is the music and I don't have enough oxygen",null,1.0],
 	["",null,1.0],
 	["",null,1.0],
 	["",null,1.0],
