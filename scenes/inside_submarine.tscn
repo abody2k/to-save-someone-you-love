@@ -1,3 +1,71 @@
 [gd_scene format=3 uid="uid://dlvf0dmg8lrqu"]
 
+[ext_resource type="Script" uid="uid://ctuhcetttjyso" path="res://scripts/inside_submarine.gd" id="1_tde4n"]
+
+[sub_resource type="Animation" id="Animation_6xb2a"]
+resource_name = "camera"
+
+[sub_resource type="Animation" id="Animation_4imn2"]
+resource_name = "memories"
+
+[sub_resource type="Animation" id="Animation_vjho5"]
+resource_name = "start_dialog"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yx4b3"]
+_data = {
+&"camera": SubResource("Animation_6xb2a"),
+&"memories": SubResource("Animation_4imn2"),
+&"start_dialog": SubResource("Animation_vjho5")
+}
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_lowuu"]
+viewport_path = NodePath("SubViewport")
+
 [node name="inside_submarine" type="Node3D" unique_id=1036476866]
+script = ExtResource("1_tde4n")
+
+[node name="SubViewport" type="SubViewport" parent="." unique_id=1155342988]
+handle_input_locally = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SubViewport" unique_id=1185632668]
+libraries/ = SubResource("AnimationLibrary_yx4b3")
+
+[node name="Camera3D" type="Camera3D" parent="SubViewport" unique_id=693507625]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=114085152]
+
+[node name="Control" type="Control" parent="CanvasLayer" unique_id=552761989]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control" unique_id=1384626511]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = SubResource("ViewportTexture_lowuu")
+metadata/_edit_use_anchors_ = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Control" unique_id=37450056]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.123
+offset_bottom = 0.29599762
+grow_horizontal = 2
+theme_override_font_sizes/normal_font_size = 25
+metadata/_edit_use_anchors_ = true
+
+[node name="Music" type="AudioStreamPlayer" parent="." unique_id=1261823825]

@@ -7,6 +7,11 @@
 [ext_resource type="PackedScene" uid="uid://bmeye5iakbkmu" path="res://scenes/plant.tscn" id="5_ogne1"]
 [ext_resource type="PackedScene" uid="uid://bdgsigy4fawcf" path="res://scenes/wagon.tscn" id="6_vjho5"]
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_f1edo"]
+radius = 1.3530084
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_f1edo"]
+
 [sub_resource type="BoxMesh" id="BoxMesh_f1edo"]
 size = Vector3(17.995117, 1, 25.353027)
 
@@ -24,6 +29,21 @@ sky_material = SubResource("ProceduralSkyMaterial_7i2eo")
 background_mode = 2
 sky = SubResource("Sky_fiuhb")
 
+[sub_resource type="Animation" id="Animation_4imn2"]
+resource_name = "memories"
+
+[sub_resource type="Animation" id="Animation_vjho5"]
+resource_name = "start_dialog"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4imn2"]
+_data = {
+&"memories": SubResource("Animation_4imn2"),
+&"start_dialog": SubResource("Animation_vjho5")
+}
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_f1edo"]
+size = Vector3(8.648071, 1, 11.214294)
+
 [sub_resource type="ViewportTexture" id="ViewportTexture_f1edo"]
 viewport_path = NodePath("SubViewport")
 
@@ -32,6 +52,24 @@ script = ExtResource("1_fiuhb")
 
 [node name="SubViewport" type="SubViewport" parent="." unique_id=228781724]
 handle_input_locally = false
+
+[node name="plant" parent="SubViewport" unique_id=1169992525 instance=ExtResource("5_ogne1")]
+transform = Transform3D(1, 0, 0, 0, -0.4564705, 0.88973856, 0, -0.88973856, -0.4564705, 5.5293164, 1.7859347, 4.5427437)
+
+[node name="plant2" parent="SubViewport" unique_id=2121478756 instance=ExtResource("5_ogne1")]
+transform = Transform3D(0.68024474, -0.6344344, 0.367097, -0.33458602, 0.17684004, 0.925624, -0.6521652, -0.75247645, -0.09197843, 5.5293164, 3.064584, 3.886747)
+
+[node name="wagon" parent="SubViewport" unique_id=1002093394 instance=ExtResource("6_vjho5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1475067, 0.2882446, -8.069773)
+
+[node name="final" type="Area3D" parent="SubViewport" unique_id=2045414916]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.380383, 0.2332468, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewport/final" unique_id=35546992]
+shape = SubResource("SphereShape3D_f1edo")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewport/final" unique_id=1322388697]
+mesh = SubResource("CylinderMesh_f1edo")
 
 [node name="door" parent="SubViewport" unique_id=1666436317 node_paths=PackedStringArray("opening_gate", "closing_gate") instance=ExtResource("2_a1ohp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.2558007, -1.2472587, 0.853946)
@@ -60,7 +98,16 @@ shadow_enabled = true
 [node name="WorldEnvironment" type="WorldEnvironment" parent="SubViewport" unique_id=1204645723]
 environment = SubResource("Environment_mn261")
 
-[node name="diver" parent="SubViewport" unique_id=1684793824 instance=ExtResource("1_7i2eo")]
+[node name="diver" parent="SubViewport" unique_id=1684793824 groups=["player"] instance=ExtResource("1_7i2eo")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SubViewport" unique_id=822964063]
+libraries/ = SubResource("AnimationLibrary_4imn2")
+
+[node name="Area3D" type="Area3D" parent="SubViewport" unique_id=659715831]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.483097, 0.4258685, -31.220518)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewport/Area3D" unique_id=20283179]
+shape = SubResource("BoxShape3D_f1edo")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1789672151]
 
@@ -86,11 +133,44 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 texture = SubResource("ViewportTexture_f1edo")
 
-[node name="plant" parent="." unique_id=1169992525 instance=ExtResource("5_ogne1")]
-transform = Transform3D(1, 0, 0, 0, -0.4564705, 0.88973856, 0, -0.88973856, -0.4564705, 5.5293164, 1.7859347, 4.5427437)
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Control" unique_id=438335192]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.123
+offset_bottom = 0.29599762
+grow_horizontal = 2
+theme_override_font_sizes/normal_font_size = 25
+text = "HOLLAAA"
 
-[node name="plant2" parent="." unique_id=2121478756 instance=ExtResource("5_ogne1")]
-transform = Transform3D(0.68024474, -0.6344344, 0.367097, -0.33458602, 0.17684004, 0.925624, -0.6521652, -0.75247645, -0.09197843, 5.5293164, 3.064584, 3.886747)
+[node name="choice" type="VBoxContainer" parent="CanvasLayer/Control" unique_id=1415547316]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.20400001
+anchor_right = 1.0
+anchor_bottom = 0.33800003
+offset_top = -0.19200134
+offset_bottom = -0.024017334
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="wagon" parent="." unique_id=1002093394 instance=ExtResource("6_vjho5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1475067, 0.2882446, -8.069773)
+[node name="push_wagon" type="Button" parent="CanvasLayer/Control/choice" unique_id=1018664920]
+layout_mode = 2
+text = "Push the wagon"
+
+[node name="Control" type="Control" parent="CanvasLayer/Control/choice" unique_id=229825548]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="follow_your_parnter" type="Button" parent="CanvasLayer/Control/choice" unique_id=1463432864]
+layout_mode = 2
+text = "Stay with your partner"
+
+[node name="Music" type="AudioStreamPlayer" parent="." unique_id=1634284921]
+
+[connection signal="body_entered" from="SubViewport/final" to="." method="_on_final_body_entered"]
+[connection signal="animation_finished" from="SubViewport/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="body_entered" from="SubViewport/Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="button_down" from="CanvasLayer/Control/choice/push_wagon" to="." method="_on_push_wagon_button_down"]
+[connection signal="button_down" from="CanvasLayer/Control/choice/follow_your_parnter" to="." method="_on_follow_your_parnter_button_down"]

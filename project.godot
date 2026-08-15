@@ -15,6 +15,10 @@ run/main_scene="uid://dithdyovkq53v"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Singleton="*uid://d1vi8b3e42b2f"
+
 [display]
 
 window/stretch/mode="canvas_items"
@@ -27,6 +31,7 @@ fish=""
 player=""
 gate=""
 bubble=""
+wagon=""
 
 [input]
 
