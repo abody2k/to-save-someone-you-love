@@ -83,3 +83,42 @@ func _on_area_3d_body_entered(body):
 		get_tree().change_scene_to_file("res://scenes/inside_submarine.tscn")
 	elif body.is_in_group("player"):
 		get_tree().change_scene_to_file("res://scenes/egg_universe.tscn")
+
+
+func _on_follow_your_parnter_button_down():
+	$CanvasLayer/Control/choice.queue_free()
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	dialogs = alternative_dialogs
+	dialogs.push_back(["You shattered my heart to pieces, loved one. Farewell",func():get_tree().get_first_node_in_group("player").call("can_play"),1.0])
+	run_dialogs_automatically()
+	
+
+var alternative_dialogs = [
+	
+	
+	["Her : This is us, our memories, we made this me and you",func(): $SubViewport/AnimationPlayer.play("memories"),4.0],
+	["You : Why I still don't remember anything",null,4.0],
+	["Her : Just wait for it",null,4.0],
+	["You : Can we go to the bottom? the place where I'm supposed to push the crystals? What is down there?",null,4.0],
+	["Her : The only truth in this world, the end",null,4.0],
+	["You : Ahh, I feel like I'm soffucating, help me I need air",null,4.0],
+	["Her : Just relax, it won't take long",null,4.0],
+	["...",func (): $Music.play(),10.0],
+]
+
+
+
+func run_dialogs_automatically():
+	var dialog = dialogs[current_dialog][0]
+	if dialogs[current_dialog][1]:
+		dialogs[current_dialog][0].call()
+	var tween = create_tween()
+	tween.tween_property($CanvasLayer/Control/RichTextLabel,"text","",0.25)
+	await tween.tween_property($CanvasLayer/Control/RichTextLabel,"text",dialog,2.0).finished
+	await get_tree().create_timer(dialogs[current_dialog][2]).timeout
+	current_dialog+=1
+	if current_dialog >= dialogs.size():
+		$CanvasLayer/Control/RichTextLabel.visible = false
+		get_tree().change_scene_to_file("res://scenes/main.tscn")
+	else:
+		run_dialogs_automatically()

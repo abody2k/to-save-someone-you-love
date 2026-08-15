@@ -29,11 +29,15 @@ sky_material = SubResource("ProceduralSkyMaterial_7i2eo")
 background_mode = 2
 sky = SubResource("Sky_fiuhb")
 
+[sub_resource type="Animation" id="Animation_4imn2"]
+resource_name = "memories"
+
 [sub_resource type="Animation" id="Animation_vjho5"]
 resource_name = "start_dialog"
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4imn2"]
 _data = {
+&"memories": SubResource("Animation_4imn2"),
 &"start_dialog": SubResource("Animation_vjho5")
 }
 
@@ -169,3 +173,4 @@ text = "Stay with your partner"
 [connection signal="animation_finished" from="SubViewport/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="body_entered" from="SubViewport/Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="button_down" from="CanvasLayer/Control/choice/push_wagon" to="." method="_on_push_wagon_button_down"]
+[connection signal="button_down" from="CanvasLayer/Control/choice/follow_your_parnter" to="." method="_on_follow_your_parnter_button_down"]
