@@ -37,6 +37,9 @@ _data = {
 &"start_dialog": SubResource("Animation_vjho5")
 }
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_f1edo"]
+size = Vector3(8.648071, 1, 11.214294)
+
 [sub_resource type="ViewportTexture" id="ViewportTexture_f1edo"]
 viewport_path = NodePath("SubViewport")
 
@@ -95,6 +98,12 @@ environment = SubResource("Environment_mn261")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="SubViewport" unique_id=822964063]
 libraries/ = SubResource("AnimationLibrary_4imn2")
+
+[node name="Area3D" type="Area3D" parent="SubViewport" unique_id=659715831]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.483097, 0.4258685, -31.220518)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewport/Area3D" unique_id=20283179]
+shape = SubResource("BoxShape3D_f1edo")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1789672151]
 
@@ -158,4 +167,5 @@ text = "Stay with your partner"
 
 [connection signal="body_entered" from="SubViewport/final" to="." method="_on_final_body_entered"]
 [connection signal="animation_finished" from="SubViewport/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="body_entered" from="SubViewport/Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="button_down" from="CanvasLayer/Control/choice/push_wagon" to="." method="_on_push_wagon_button_down"]

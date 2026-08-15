@@ -27,6 +27,7 @@ fish=""
 player=""
 gate=""
 bubble=""
+wagon=""
 
 [input]
 

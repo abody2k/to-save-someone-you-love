@@ -75,3 +75,10 @@ func _on_push_wagon_button_down():
 	dialogs.push_back(["You shattered my heart to pieces, loved one. Farewell",func():get_tree().get_first_node_in_group("player").call("can_play"),1.0])
 	can_interract = true
 	run_next_dialog()
+
+
+func _on_area_3d_body_entered(body):
+	if body.is_in_group("wagon"):
+		get_tree().change_scene_to_file("res://scenes/inside_submarine.tscn")
+	elif body.is_in_group("player"):
+		get_tree().change_scene_to_file("res://scenes/egg_universe.tscn")
