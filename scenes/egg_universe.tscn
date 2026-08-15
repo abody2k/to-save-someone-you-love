@@ -1,3 +1,85 @@
 [gd_scene format=3 uid="uid://2tlx7lrhrr6u"]
 
+[ext_resource type="Script" uid="uid://b1fosm542p4h7" path="res://scripts/egg_universe.gd" id="1_6xb2a"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ueg7r"]
+sky_top_color = Color(0.0017059102, 0.020097585, 0.29600105, 1)
+sky_horizon_color = Color(0.065848276, 0.067605644, 0.15867311, 1)
+ground_bottom_color = Color(0.034593657, 0.023231475, 0.11159787, 1)
+ground_horizon_color = Color(0.065848276, 0.067605644, 0.15867311, 1)
+energy_multiplier = 1.7
+
+[sub_resource type="Sky" id="Sky_6xb2a"]
+sky_material = SubResource("ProceduralSkyMaterial_ueg7r")
+
+[sub_resource type="Environment" id="Environment_gkql1"]
+background_mode = 2
+sky = SubResource("Sky_6xb2a")
+
+[sub_resource type="Animation" id="Animation_4imn2"]
+resource_name = "memories"
+
+[sub_resource type="Animation" id="Animation_vjho5"]
+resource_name = "start_dialog"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ueg7r"]
+_data = {
+&"memories": SubResource("Animation_4imn2"),
+&"start_dialog": SubResource("Animation_vjho5")
+}
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_6xb2a"]
+viewport_path = NodePath("SubViewport")
+
 [node name="egg_universe" type="Node3D" unique_id=1244430741]
+script = ExtResource("1_6xb2a")
+
+[node name="SubViewport" type="SubViewport" parent="." unique_id=92316770]
+handle_input_locally = false
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewport" unique_id=1757651262]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="SubViewport" unique_id=196861133]
+environment = SubResource("Environment_gkql1")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SubViewport" unique_id=556237805]
+libraries/ = SubResource("AnimationLibrary_ueg7r")
+
+[node name="Camera3D" type="Camera3D" parent="SubViewport" unique_id=863072475]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=819953187]
+
+[node name="Control" type="Control" parent="CanvasLayer" unique_id=1900891494]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 1
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control" unique_id=1316768282]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = SubResource("ViewportTexture_6xb2a")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Control" unique_id=2124295937]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.123
+offset_bottom = 0.29599762
+grow_horizontal = 2
+theme_override_font_sizes/normal_font_size = 25
+
+[node name="Music" type="AudioStreamPlayer" parent="." unique_id=1230415329]
